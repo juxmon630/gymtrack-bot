@@ -1,0 +1,35 @@
+{
+  "name": "gymtrack-bot",
+  "version": "1.0.0",
+  "description": "🏋️ WhatsApp Gym Tracking Bot for Julián Pérez",
+  "main": "gymtrack_production.js",
+  "scripts": {
+    "start": "node gymtrack_production.js",
+    "dev": "nodemon gymtrack_production.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gym",
+    "whatsapp",
+    "fitness",
+    "tracking",
+    "twilio",
+    "firebase"
+  ],
+  "author": "Claude",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "twilio": "^3.77.0",
+    "firebase-admin": "^11.5.0",
+    "dotenv": "^16.0.3",
+    "body-parser": "^1.20.2",
+    "node-cron": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
