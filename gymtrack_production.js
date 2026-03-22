@@ -96,12 +96,21 @@ async function sendMessage(to, message) {
 
 async function sendMorningRoutine() {
   const routine = getTodayRoutine();
-  let msg = `${routine.day} - ${routine.name}\n\nExercises:\n`;
+  let msg = `${routine.day} - ${routine.name}\n\n`;
   routine.exercises.forEach((ex, i) => {
     msg += `${i + 1}. ${ex.name}\n   ${ex.target}\n`;
   });
   msg += `\n💪 Ready?`;
-  await sendMessage(CONFIG.JULIAN_PHONE, msg);
+  
+  // Dividir en 2 mensajes si es muy largo
+  if (msg.length > 1000) {
+    const mid = msg.lastIndexOf('\n', msg.length / 2);
+    await sendMessage(CONFIG.JULIAN_PHONE, msg.substring(0, mid));
+    await new Promise(r => setTimeout(r, 500));
+    await sendMessage(CONFIG.JULIAN_PHONE, msg.substring(mid));
+  } else {
+    await sendMessage(CONFIG.JULIAN_PHONE, msg);
+  }
 }
 
 cron.schedule('0 8 * * *', sendMorningRoutine, {
